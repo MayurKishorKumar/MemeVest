@@ -111,7 +111,7 @@ const MemeDashboard: React.FC = () => {
       </main>
 
       <footer className="text-center mt-12 text-sm">
-        <p>© 2023 MemeVest. All rights reserved. No financial advice, just memes and dreams.</p>
+        <p>© 2024 MemeVest. All rights reserved. No financial advice, just memes and dreams.</p>
       </footer>
     </div>
   );
