@@ -1,11 +1,8 @@
-import MemeDashboard from './components/MemeDashboard';
+import React from 'react';
+import MemeDashboard from './pages/MemeDashboard.jsx';
 
 function App() {
-  return (
-    <div className="App">
-      <MemeDashboard />
-    </div>
-  );
+  return <MemeDashboard />;
 }
 
 export default App;
