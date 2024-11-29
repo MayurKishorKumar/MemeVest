@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { MemeCoin, mockMemeCoins, formatNumber, getRandomJoke } from '../utils/memeUtils';
+import { mockMemeCoins, formatNumber, getRandomJoke } from '../utils/memeUtils';
 import { motion } from 'framer-motion';
 
-const MemeDashboard: React.FC = () => {
-  const [memeCoins, setMemeCoins] = useState<MemeCoin[]>(mockMemeCoins);
-  const [joke, setJoke] = useState<string>(getRandomJoke());
+const MemeDashboard = () => {
+  const [memeCoins, setMemeCoins] = useState(mockMemeCoins);
+  const [joke, setJoke] = useState(getRandomJoke());
 
   useEffect(() => {
     const interval = setInterval(() => {

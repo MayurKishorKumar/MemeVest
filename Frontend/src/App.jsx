@@ -1,4 +1,4 @@
-import MemeDashboard from './components/MemeDashboard'; // Adjust path as needed
+import MemeDashboard from './components/MemeDashboard';
 
 function App() {
   return (
