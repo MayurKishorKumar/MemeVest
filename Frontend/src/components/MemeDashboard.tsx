@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MemeCoin, mockMemeCoins, formatNumber, getRandomJoke } from 'C:/GameAI/MemeVest/Memevest/src/utils/MemeUtils';
+import { MemeCoin, mockMemeCoins, formatNumber, getRandomJoke } from '../utils/memeUtils';
 import { motion } from 'framer-motion';
 
 const MemeDashboard: React.FC = () => {
