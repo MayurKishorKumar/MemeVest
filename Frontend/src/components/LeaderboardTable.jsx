@@ -1,5 +1,5 @@
-import React from 'react';
 import { formatNumber } from '../utils/formatUtils.js';
+import PropTypes from 'prop-types';
 
 export const LeaderboardTable = ({ coins }) => {
   return (
@@ -30,5 +30,19 @@ export const LeaderboardTable = ({ coins }) => {
         ))}
       </tbody>
     </table>
-  );
+  )
+};
+
+LeaderboardTable.propTypes = {
+  coins: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      symbol: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      change24h: PropTypes.number.isRequired,
+      marketCap: PropTypes.number.isRequired,
+      volume: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 export const CoinCard = ({ coin }) => {
   return (
@@ -15,4 +16,14 @@ export const CoinCard = ({ coin }) => {
       <p className="mb-1">Moon Potential: {coin.moonPotential}%</p>
     </motion.div>
   );
+};
+
+CoinCard.propTypes = {
+  coin: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    symbol: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    change24h: PropTypes.number.isRequired,
+    moonPotential: PropTypes.number.isRequired,
+  }).isRequired,
 };
