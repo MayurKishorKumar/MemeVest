@@ -1,24 +1,13 @@
-import { motion } from 'framer-motion';
+import { Rocket } from 'lucide-react';
 
 export const Header = () => {
   return (
     <header className="text-center mb-12">
-      <motion.h1 
-        className="text-6xl font-bold mb-4"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        MemeVest
-      </motion.h1>
-      <motion.p 
-        className="text-2xl"
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        Where Memes Become Dreams
-      </motion.p>
+      <div className="flex items-center justify-center gap-3 mb-4">
+        <Rocket size={40} className="text-yellow-300" />
+        <h1 className="text-6xl font-bold">MemeVest</h1>
+      </div>
+      <p className="text-2xl text-gray-200">Where Memes Become Dreams</p>
     </header>
   );
 };

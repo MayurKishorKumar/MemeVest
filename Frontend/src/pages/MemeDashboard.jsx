@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Search } from 'lucide-react';
 import { mockMemeCoins } from '../utils/memeUtils.js';
 import { getRandomJoke } from '../utils/jokeUtils.js';
 import { Header } from '../components/Header.jsx';
@@ -6,6 +8,7 @@ import { CoinCard } from '../components/CoinCard.jsx';
 import { LeaderboardTable } from '../components/LeaderboardTable.jsx';
 
 const MemeDashboard = () => {
+  const navigate = useNavigate();
   const [memeCoins] = useState(mockMemeCoins);
   const [joke, setJoke] = useState(getRandomJoke());
 
@@ -22,6 +25,17 @@ const MemeDashboard = () => {
       <Header />
 
       <main className="max-w-7xl mx-auto">
+        <div className="flex justify-end mb-6">
+          <button
+            onClick={() => navigate('/search')}
+            className="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg flex items-center gap-2 
+                     transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          >
+            <Search size={20} />
+            <span>Search Memes</span>
+          </button>
+        </div>
+
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-4">Your Meme Portfolio</h2>
           <div className="bg-white bg-opacity-10 rounded-lg p-6">

@@ -1,23 +1,17 @@
-import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
 export const CoinCard = ({ coin }) => {
   return (
-    <motion.div 
-      className="bg-gray-800 rounded-lg p-4"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
+    <div className="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition-all duration-200">
       <h3 className="text-xl font-bold mb-2">{coin.name} ({coin.symbol})</h3>
-      <p className="mb-1">Price: ${coin.price ? coin.price.toFixed(6) : 'N/A'}</p>
+      <p className="mb-1">Price: ${coin.price.toFixed(8)}</p>
       <p className={`mb-1 ${coin.change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-        24h: {coin.change24h ? (coin.change24h > 0 ? '+' : '') + coin.change24h.toFixed(2) : 'N/A'}%
+        24h: {coin.change24h > 0 ? '+' : ''}{coin.change24h.toFixed(2)}%
       </p>
-      <p className="mb-1">Moon Potential: {coin.moonPotential ? coin.moonPotential : 'N/A'}%</p>
-    </motion.div>
+      <p className="mb-1">Moon Potential: {coin.moonPotential}%</p>
+    </div>
   );
 };
-
 
 CoinCard.propTypes = {
   coin: PropTypes.shape({
@@ -25,6 +19,6 @@ CoinCard.propTypes = {
     symbol: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     change24h: PropTypes.number.isRequired,
-    moonPotential: PropTypes.number.isRequired,
-  }).isRequired,
+    moonPotential: PropTypes.number.isRequired
+  }).isRequired
 };
