@@ -4,12 +4,19 @@ import { getRandomJoke } from '../utils/jokeUtils.js';
 import { Header } from '../components/Header.jsx';
 import { CoinCard } from '../components/CoinCard.jsx';
 import { LeaderboardTable } from '../components/LeaderboardTable.jsx';
+import { fetchMemeCoins } from '../utils/apiUtils.js';
 
 const MemeDashboard = () => {
-  const [memeCoins] = useState(mockMemeCoins);
+  const [memeCoins, setMemeCoins] = useState(mockMemeCoins);
   const [joke, setJoke] = useState(getRandomJoke());
 
   useEffect(() => {
+    const loadMemeCoins = async () => {
+      const coins = await fetchMemeCoins();
+      setMemeCoins(coins);
+    };
+    loadMemeCoins();
+
     const interval = setInterval(() => {
       setJoke(getRandomJoke());
     }, 10000);
