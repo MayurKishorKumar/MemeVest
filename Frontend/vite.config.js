@@ -1,7 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-})
+  base: '/MemeVest/', // Ensure this matches your repo name
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Ensures single bundle for assets
+      },
+    },
+  },
+});
