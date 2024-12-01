@@ -1,37 +1,31 @@
-import PropTypes from 'prop-types';
-
-const formatNumber = (num) => {
-  if (num >= 1e9) return (num / 1e9).toFixed(2) + 'B';
-  if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
-  if (num >= 1e3) return (num / 1e3).toFixed(2) + 'K';
-  return num.toString();
-};
+import PropTypes from "prop-types";
 
 export const LeaderboardTable = ({ coins }) => {
   return (
-    <table className="w-full">
+    <table className="w-full text-left text-white">
       <thead>
-        <tr className="text-left">
-          <th className="pb-2">Coin</th>
-          <th className="pb-2">Price</th>
-          <th className="pb-2">24h Change</th>
-          <th className="pb-2">Market Cap</th>
-          <th className="pb-2">Volume</th>
+        <tr className="bg-gray-800">
+          <th className="p-3">Rank</th>
+          <th className="p-3">Name</th>
+          <th className="p-3">Price</th>
+          <th className="p-3">24h Change</th>
+          <th className="p-3">Market Cap</th>
         </tr>
       </thead>
       <tbody>
-        {coins.map((coin) => (
-          <tr key={coin.id} className="border-t border-white border-opacity-10">
-            <td className="py-2">
-              <div className="font-bold">{coin.name}</div>
-              <div className="text-sm text-gray-300">{coin.symbol}</div>
+        {coins.map((coin, index) => (
+          <tr key={coin.id} className="border-b border-gray-700">
+            <td className="p-3">{index + 1}</td>
+            <td className="p-3">{coin.name}</td>
+            <td className="p-3">${coin.current_price?.toFixed(4) || "N/A"}</td>
+            <td
+              className={`p-3 ${
+                coin.price_change_percentage_24h > 0 ? "text-green-500" : "text-red-500"
+              }`}
+            >
+              {coin.price_change_percentage_24h?.toFixed(2) || "N/A"}%
             </td>
-            <td>${coin.price.toFixed(8)}</td>
-            <td className={coin.change24h >= 0 ? 'text-green-400' : 'text-red-400'}>
-              {coin.change24h > 0 ? '+' : ''}{coin.change24h.toFixed(2)}%
-            </td>
-            <td>${formatNumber(coin.marketCap)}</td>
-            <td>${formatNumber(coin.volume)}</td>
+            <td className="p-3">${coin.market_cap?.toLocaleString() || "N/A"}</td>
           </tr>
         ))}
       </tbody>
@@ -40,13 +34,13 @@ export const LeaderboardTable = ({ coins }) => {
 };
 
 LeaderboardTable.propTypes = {
-  coins: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    symbol: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    change24h: PropTypes.number.isRequired,
-    marketCap: PropTypes.number.isRequired,
-    volume: PropTypes.number.isRequired
-  })).isRequired
+  coins: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired, // Adjusted to accept string IDs
+      name: PropTypes.string.isRequired,
+      current_price: PropTypes.number, // Optional
+      price_change_percentage_24h: PropTypes.number, // Optional
+      market_cap: PropTypes.number, // Optional
+    })
+  ).isRequired,
 };

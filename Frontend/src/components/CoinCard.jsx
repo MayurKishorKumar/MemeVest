@@ -1,14 +1,18 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export const CoinCard = ({ coin }) => {
   return (
-    <div className="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition-all duration-200">
-      <h3 className="text-xl font-bold mb-2">{coin.name} ({coin.symbol})</h3>
-      <p className="mb-1">Price: ${coin.price.toFixed(8)}</p>
-      <p className={`mb-1 ${coin.change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-        24h: {coin.change24h > 0 ? '+' : ''}{coin.change24h.toFixed(2)}%
+    <div className="bg-gray-700 p-4 rounded-lg shadow-md text-white">
+      <h3 className="text-xl font-bold">{coin.name} ({coin.symbol?.toUpperCase()})</h3>
+      <p className="mt-2 text-lg">
+        Price: ${coin.current_price?.toFixed(4) || "N/A"}
       </p>
-      <p className="mb-1">Moon Potential: {coin.moonPotential}%</p>
+      <p className="text-sm mt-1">
+        24h Change: {coin.price_change_percentage_24h?.toFixed(2) || "N/A"}%
+      </p>
+      <p className="text-sm mt-1">
+        Market Cap: ${coin.market_cap?.toLocaleString() || "N/A"}
+      </p>
     </div>
   );
 };
@@ -17,8 +21,8 @@ CoinCard.propTypes = {
   coin: PropTypes.shape({
     name: PropTypes.string.isRequired,
     symbol: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    change24h: PropTypes.number.isRequired,
-    moonPotential: PropTypes.number.isRequired
-  }).isRequired
+    current_price: PropTypes.number, // Adjusted to handle undefined
+    price_change_percentage_24h: PropTypes.number, // Optional
+    market_cap: PropTypes.number, // Optional
+  }).isRequired,
 };
