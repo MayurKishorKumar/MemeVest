@@ -21,10 +21,10 @@ const MemeDashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-600 to-blue-800 text-white p-8">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-purple-600 to-blue-800 text-white p-8">
       <Header />
 
-      <main className="max-w-7xl mx-auto">
+      <main className="flex-grow max-w-7xl mx-auto w-full px-8 py-8">
         <div className="flex justify-end mb-6">
           <button
             onClick={() => navigate('/search')}
@@ -72,7 +72,7 @@ const MemeDashboard = () => {
         </section>
       </main>
 
-      <footer className="text-center mt-12 text-sm">
+      <footer className="text-center py-4 text-sm">
         <p>© 2024 MemeVest. All rights reserved. No financial advice, just memes and dreams.</p>
       </footer>
     </div>
